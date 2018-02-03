@@ -1,0 +1,19 @@
+[package]
+name = "onnx"
+version = "0.1.0"
+description = "ONNX helpers for Rust"
+authors = ["Nick Hynes <nhynes@berkeley.edu>"]
+build = "build.rs"
+repository = "https://github.com/nhynes/onnx-rs"
+license = "MIT"
+readme = "README.md"
+
+[features]
+default = []
+proto3 = []
+
+[dependencies]
+protobuf = "1.4"
+
+[build-dependencies]
+protoc-rust = "1.4"
