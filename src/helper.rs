@@ -23,7 +23,7 @@ macro_rules! set_repeated {
 pub fn make_model<S: Into<String>, T: Into<i64>>(
     graph: GraphProto,
     opset_imports: Vec<OperatorSetIdProto>,
-    domain: Option<String>,
+    domain: Option<S>,
     model_version: Option<T>,
     producer_name: Option<S>,
     producer_version: Option<S>,
@@ -88,7 +88,7 @@ pub fn make_graph<S: Into<String>>(
 }
 
 pub fn make_node<S: Into<String>>(
-    op_type: Option<S>,
+    op_type: S,
     inputs: Vec<S>,
     outputs: Vec<S>,
     name: Option<S>,
@@ -97,7 +97,7 @@ pub fn make_node<S: Into<String>>(
     attributes: Vec<AttributeProto>,
 ) -> NodeProto {
     let mut node_proto = NodeProto::new();
-    set_optional!(node_proto.set_op_type(op_type));
+    node_proto.set_op_type(op_type.into());
     set_repeated!(node_proto.set_input(inputs.into()));
     set_repeated!(node_proto.set_output(outputs.into()));
     set_optional!(node_proto.set_name(name));
